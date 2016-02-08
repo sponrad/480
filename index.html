@@ -30,13 +30,14 @@
 	<div class="row">
 		<div class="col-md-6">
 			<h2>Name: Zebedee Stanley</h2>
+			<select class='form-control'><option>Frugal</option><option>Somewhat frugal</option><option>Normal</option><option>Somewhat lavish</option><option>Lavish</option></select>
 			
 			<h2>Humanity: XXXX-</h2>
-			
+
 			<h2>Monthly Income: $4,500 <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></h2>
 			<h2>Monthly Payments: $3,800</h2>
-			<h2>Assets and Liabilities:</h2>
 			<h2>Net Worth: $45 <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></h2>
+			<h2>Assets and Liabilities: <button class="btn btn-primary">Buy something</button></h2>
 			<ul style="list-style-type:none">
 				<li>Cash: <span style="color: green;">$90</span> </li>
 				<li>Student Loan: <span style="color: red;">$45</span> </li>
@@ -48,6 +49,7 @@
 		</div>
 	
 		<div class="col-md-6">
+			<div id="console">Welcome to 480.</div>
 			<h2>Real Estate Market <button class='btn btn-primary'>invest</button></h2>
 			<div id="real_estate_chart_div"></div>
 			<h2>Stock Market <button class='btn btn-primary'>invest</button></h2>
@@ -63,6 +65,9 @@
 	 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	
 	<script>
+
+	
+	
 	google.charts.load('current', {packages: ['corechart', 'line']});
 	google.charts.setOnLoadCallback(drawBackgroundColor);
 	function drawBackgroundColor() {
@@ -105,6 +110,42 @@
 	  return window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
 	}
 	
+	function Player(){
+		this.name = "Zebedee Stanley";
+		this.occupation = "Broker";
+		this.assets = [];
+		this.humanity = 2;
+		this.networth =  function(){ return this.totalassets() - this.totaldebts() };
+		this.monthlyincome =  function(){};
+		this.monthlydebts = function(){};
+		this.totalassets = function(){};
+		this.totaldebts = function(){};
+	}
+	
+	function Asset(){
+		//id
+		this.type = "home"; //(home, rental home, rental they live in, loan, bank account, credit card, ETC)
+		this.name = "Apartment";
+		this.interest = 0;
+		this.payment = 800;
+		this.happinessfactor = 1; //- does this add or detract from happiness
+		this.currentvalue = 0;
+		this.pastvalues = []; //(list of values per days)
+		this.generatenextvalue = 0;
+		this.paymentamount = 0;
+		this.paymentdue = 0;
+	}
+	
+	function month(day){ return Math.floor(day/30); }
+	function year(day){ return Math.floor(day/365); }
+	
+	player = new Player();
+	day = 0;
+	
+	function update(){
+		day += 1;
+	}
+	
 	$(document).ready( function(){
 		var now,
 			dt   = 0,
@@ -116,8 +157,8 @@
 		  dt = dt + Math.min(1, (now - last) / 1000);
 		  while(dt > step) {
 			dt = dt - step;
-			//update(step);
-			console.log( timestamp() );
+			update();
+			console.log( day );
 		  }
 		  //render(dt);
 		  last = now;
