@@ -15,3 +15,4 @@ Server
 ------
 
     $ webpack-dev-server --progress --colors
+    # running at http://localhost:8080/webpack-dev-server/
