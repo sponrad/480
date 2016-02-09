@@ -10,16 +10,15 @@
 
   </head>
   <body>
-  <div class="container-fluid">
+  <div class="container-fluid" id="480">
 
-	
 	<div class="row">
 		<div class="col-md-6">
 		<h1>480</h1>
 		</div>
 		
 		<div class="col-md-6">
-			<span>Year: 0 | Month: 0 | Day: 1</span>
+			<span>Year: { game.year } | Month: { game.month } | Day: { game.monthday }</span>
 			<span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
 			<span style="color: blue;" class="glyphicon glyphicon-play" aria-hidden="true"></span>
 			<span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
@@ -29,10 +28,10 @@
 	
 	<div class="row">
 		<div class="col-md-6">
-			<h2>Name: Zebedee Stanley</h2>
+			<h2>Name: { game.player.name }</h2>
 			<select class='form-control'><option>Frugal</option><option>Somewhat frugal</option><option>Normal</option><option>Somewhat lavish</option><option>Lavish</option></select>
 			
-			<h2>Humanity: XXXX-</h2>
+			<h2>Humanity: ☺</h2>
 
 			<h2>Monthly Income: $4,500 <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></h2>
 			<h2>Monthly Payments: $3,800</h2>
@@ -62,12 +61,10 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	
-	<script>
+	<script src="rivets.bundled.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-	
-	
+	<script>
 	google.charts.load('current', {packages: ['corechart', 'line']});
 	google.charts.setOnLoadCallback(drawBackgroundColor);
 	function drawBackgroundColor() {
@@ -110,6 +107,19 @@
 	  return window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
 	}
 	
+	function Game(){
+		this.day = 0;
+		this.monthday = 0;
+		this.month = 0;
+		this.year = 0;
+		this.player = new Player();
+		this.update = function(){
+			this.monthday = function(){ return (this.day % 30)+1; }
+			this.month = function(){ return (Math.floor((this.day%360)/30))+1; }
+			this.year = function(){ return (Math.floor(this.day/360))+1;}
+			}
+	}
+	
 	function Player(){
 		this.name = "Zebedee Stanley";
 		this.occupation = "Broker";
@@ -136,37 +146,34 @@
 		this.paymentdue = 0;
 	}
 	
-	function month(day){ return Math.floor(day/30); }
-	function year(day){ return Math.floor(day/365); }
-	
-	player = new Player();
-	day = 0;
+	game = new Game();
 	
 	function update(){
-		day += 1;
+		game.day += 1;
+		game.update();
 	}
 	
-	$(document).ready( function(){
-		var now,
-			dt   = 0,
-			last = timestamp(),
-			step = 1;
+	rivets.bind($('#480'), { game: game });
+	
+	var now,
+		dt   = 0,
+		last = timestamp(),
+		step = 1;
 
-		function frame() {
-		  now = timestamp();
-		  dt = dt + Math.min(1, (now - last) / 1000);
-		  while(dt > step) {
-			dt = dt - step;
-			update();
-			console.log( day );
-		  }
-		  //render(dt);
-		  last = now;
-		  requestAnimationFrame(frame);
-		}
+	function frame() {
+	  now = timestamp();
+	  dt = dt + Math.min(1, (now - last) / 1000);
+	  while(dt > step) {
+		dt = dt - step;
+		update();
+		//console.log( day );			
+	  }
+	  //render(dt);
+	  last = now;
+	  requestAnimationFrame(frame);
+	}
 
-		requestAnimationFrame(frame);
-	});
+	requestAnimationFrame(frame);
 	
 	</script>
   </body>
