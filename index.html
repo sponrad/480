@@ -6,177 +6,177 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>480</title>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
   </head>
   <body>
-  <div class="container-fluid" id="480">
+    <div class="container-fluid" id="480">
 
-	<div class="row">
-		<div class="col-md-6">
-		<h1>480</h1>
-		</div>
-		
-		<div class="col-md-6">
-			<span>Year: { game.year } | Month: { game.month } | Day: { game.monthday }</span>
-			<span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
-			<span style="color: blue;" class="glyphicon glyphicon-play" aria-hidden="true"></span>
-			<span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
-			<span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span>
-		</div>
+      <div class="row">
+	<div class="col-md-6">
+	  <h1>480</h1>
 	</div>
 	
-	<div class="row">
-		<div class="col-md-6">
-			<h2>Name: { game.player.name }</h2>
-			<select class='form-control'><option>Frugal</option><option>Somewhat frugal</option><option>Normal</option><option>Somewhat lavish</option><option>Lavish</option></select>
-			
-			<h2>Humanity: ☺</h2>
+	<div class="col-md-6">
+	  <span>Year: { game.year } | Month: { game.month } | Day: { game.monthday }</span>
+	  <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+	  <span style="color: blue;" class="glyphicon glyphicon-play" aria-hidden="true"></span>
+	  <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+	  <span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span>
+	</div>
+      </div>
+      
+      <div class="row">
+	<div class="col-md-6">
+	  <h2>Name: { game.player.name }</h2>
+	  <select class='form-control'><option>Frugal</option><option>Somewhat frugal</option><option>Normal</option><option>Somewhat lavish</option><option>Lavish</option></select>
+	  
+	  <h2>Humanity: ☺</h2>
 
-			<h2>Monthly Income: $4,500 <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></h2>
-			<h2>Monthly Payments: $3,800</h2>
-			<h2>Net Worth: ${ game.player.networth } <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></h2>
-			<h2>Assets and Liabilities: <button class="btn btn-primary">Buy something</button></h2>
-			<ul style="list-style-type:none">
-				<li>Cash: <span style="color: green;">$90</span> </li>
-				<li>Student Loan: <span style="color: red;">$45</span> </li>
-				<li>Apartment: $0, $800 rent on the 1st</li>
-				<li>Home Loan: NA</li>
-				<li>Etc.</li>
-			</ul>
+	  <h2>Monthly Income: $4,500 <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></h2>
+	  <h2>Monthly Payments: $3,800</h2>
+	  <h2>Net Worth: ${ game.player.networth } <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></h2>
+	  <h2>Assets and Liabilities: <button class="btn btn-primary">Buy something</button></h2>
+	  <ul style="list-style-type:none">
+	    <li>Cash: <span style="color: green;">$90</span> </li>
+	    <li>Student Loan: <span style="color: red;">$45</span> </li>
+	    <li>Apartment: $0, $800 rent on the 1st</li>
+	    <li>Home Loan: NA</li>
+	    <li>Etc.</li>
+	  </ul>
 
-		</div>
+	</div>
 	
-		<div class="col-md-6">
-			<div id="console">Welcome to 480.</div>
-			<h2>Real Estate Market <button class='btn btn-primary'>invest</button></h2>
-			<div id="real_estate_chart_div"></div>
-			<h2>Stock Market <button class='btn btn-primary'>invest</button></h2>
-			<div id="stock_chart_div"></div>
-		</div>
-		
+	<div class="col-md-6">
+	  <div id="console">Welcome to 480.</div>
+	  <h2>Real Estate Market <button class='btn btn-primary'>invest</button></h2>
+	  <div id="real_estate_chart_div"></div>
+	  <h2>Stock Market <button class='btn btn-primary'>invest</button></h2>
+	  <div id="stock_chart_div"></div>
 	</div>
-		
-	</div>
+	
+      </div>
+      
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script src="rivets.bundled.min.js"></script>
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="rivets.bundled.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-	<script>
-	google.charts.load('current', {packages: ['corechart', 'line']});
-	google.charts.setOnLoadCallback(drawBackgroundColor);
-	function drawBackgroundColor() {
-      var data = new google.visualization.DataTable();
-      data.addColumn('number', 'X');
-      data.addColumn('number', 'Price');
+    <script>
+     google.charts.load('current', {packages: ['corechart', 'line']});
+     google.charts.setOnLoadCallback(drawBackgroundColor);
+     function drawBackgroundColor() {
+       var data = new google.visualization.DataTable();
+       data.addColumn('number', 'X');
+       data.addColumn('number', 'Price');
 
-      data.addRows([
-        [0, 0],   [1, 10],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
-        [6, 11],  [7, 27],  [8, 33],  [9, 40],  [10, 32], [11, 35],
-        [12, 30], [13, 40], [14, 42], [15, 47], [16, 44], [17, 48],
-        [18, 52], [19, 54], [20, 42], [21, 55], [22, 56], [23, 57],
-        [24, 60], [25, 50], [26, 52], [27, 51], [28, 49], [29, 53],
-        [30, 55], [31, 60], [32, 61], [33, 59], [34, 62], [35, 65],
-        [36, 62], [37, 58], [38, 55], [39, 61], [40, 64], [41, 65],
-        [42, 63], [43, 66], [44, 67], [45, 69], [46, 69], [47, 70],
-        [48, 72], [49, 68], [50, 66], [51, 65], [52, 67], [53, 70],
-        [54, 71], [55, 72], [56, 73], [57, 75], [58, 70], [59, 68],
-        [60, 64], [61, 60], [62, 65], [63, 67], [64, 68], [65, 69],
-        [66, 70], [67, 72], [68, 75], [69, 80]
-      ]);
+       data.addRows([
+         [0, 0],   [1, 10],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
+         [6, 11],  [7, 27],  [8, 33],  [9, 40],  [10, 32], [11, 35],
+         [12, 30], [13, 40], [14, 42], [15, 47], [16, 44], [17, 48],
+         [18, 52], [19, 54], [20, 42], [21, 55], [22, 56], [23, 57],
+         [24, 60], [25, 50], [26, 52], [27, 51], [28, 49], [29, 53],
+         [30, 55], [31, 60], [32, 61], [33, 59], [34, 62], [35, 65],
+         [36, 62], [37, 58], [38, 55], [39, 61], [40, 64], [41, 65],
+         [42, 63], [43, 66], [44, 67], [45, 69], [46, 69], [47, 70],
+         [48, 72], [49, 68], [50, 66], [51, 65], [52, 67], [53, 70],
+         [54, 71], [55, 72], [56, 73], [57, 75], [58, 70], [59, 68],
+         [60, 64], [61, 60], [62, 65], [63, 67], [64, 68], [65, 69],
+         [66, 70], [67, 72], [68, 75], [69, 80]
+       ]);
 
-      var options = {
-        hAxis: {
-          title: 'Day'
-        },
-        vAxis: {
-          title: 'Price'
-        },
-        backgroundColor: '#ffffff'
-      };
+       var options = {
+         hAxis: {
+           title: 'Day'
+         },
+         vAxis: {
+           title: 'Price'
+         },
+         backgroundColor: '#ffffff'
+       };
 
-      var chart = new google.visualization.LineChart(document.getElementById('real_estate_chart_div'));
-      chart.draw(data, options);
-	  var chart = new google.visualization.LineChart(document.getElementById('stock_chart_div'));
-      chart.draw(data, options);
-    }
-	
-	function timestamp() {
-	  return window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
-	}
-	
-	function Game(){
-		this.day = 0;
-		this.monthday = 0;
-		this.month = 0;
-		this.year = 0;
-		this.player = new Player();
-		this.update = function(){
-			this.monthday = function(){ return (this.day % 30)+1; }
-			this.month = function(){ return (Math.floor((this.day%360)/30))+1; }
-			this.year = function(){ return (Math.floor(this.day/360))+1;}
-		}
-	}
-	
-	function Player(){
-		this.name = "Zebedee Stanley";
-		this.occupation = "Broker";
-		this.assets = [];
-		this.humanity = 2;
-		this.networth = 45;
-		this.monthlyincome =  function(){};
-		this.monthlydebts = function(){};
-		this.totalassets = function(){};
-		this.totaldebts = function(){};
-	}
-	
-	function Asset(){
-		//id
-		this.type = "home"; //(home, rental home, rental they live in, loan, bank account, credit card, ETC)
-		this.name = "Apartment";
-		this.interest = 0;
-		this.payment = 800;
-		this.happinessfactor = 1; //- does this add or detract from happiness
-		this.currentvalue = 0;
-		this.pastvalues = []; //(list of values per days)
-		this.generatenextvalue = 0;
-		this.paymentamount = 0;
-		this.paymentdue = 0;
-	}
-	
-	game = new Game();
-	
-	function update(){
-		game.day += 1;
-		game.update();
-		game.player.networth += 3;
-		//game.processevents
-	}
-	
-	rivets.bind($('#480'), { game: game });
-	
-	var now,
-		dt   = 0,
-		last = timestamp(),
-		step = 1;
+       var chart = new google.visualization.LineChart(document.getElementById('real_estate_chart_div'));
+       chart.draw(data, options);
+       var chart = new google.visualization.LineChart(document.getElementById('stock_chart_div'));
+       chart.draw(data, options);
+     }
+     
+     function timestamp() {
+       return window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
+     }
+     
+     function Game(){
+       this.day = 0;
+       this.monthday = 0;
+       this.month = 0;
+       this.year = 0;
+       this.player = new Player();
+       this.update = function(){
+	 this.monthday = function(){ return (this.day % 30)+1; }
+	 this.month = function(){ return (Math.floor((this.day%360)/30))+1; }
+	 this.year = function(){ return (Math.floor(this.day/360))+1;}
+       }
+     }
+     
+     function Player(){
+       this.name = "Zebedee Stanley";
+       this.occupation = "Broker";
+       this.assets = [];
+       this.humanity = 2;
+       this.networth = 45;
+       this.monthlyincome =  function(){};
+       this.monthlydebts = function(){};
+       this.totalassets = function(){};
+       this.totaldebts = function(){};
+     }
+     
+     function Asset(){
+       //id
+       this.type = "home"; //(home, rental home, rental they live in, loan, bank account, credit card, ETC)
+       this.name = "Apartment";
+       this.interest = 0;
+       this.payment = 800;
+       this.happinessfactor = 1; //- does this add or detract from happiness
+       this.currentvalue = 0;
+       this.pastvalues = []; //(list of values per days)
+       this.generatenextvalue = 0;
+       this.paymentamount = 0;
+       this.paymentdue = 0;
+     }
+     
+     game = new Game();
+     
+     function update(){
+       game.day += 1;
+       game.update();
+       game.player.networth += 3;
+       //game.processevents
+     }
+     
+     rivets.bind($('#480'), { game: game });
+     
+     var now,
+	 dt   = 0,
+	 last = timestamp(),
+	 step = 1;
 
-	function frame() {
-	  now = timestamp();
-	  dt = dt + Math.min(1, (now - last) / 1000);
-	  while(dt > step) {
-		dt = dt - step;
-		update();
-		//console.log( day );			
-	  }
-	  //render(dt);
-	  last = now;
-	  requestAnimationFrame(frame);
-	}
+     function frame() {
+       now = timestamp();
+       dt = dt + Math.min(1, (now - last) / 1000);
+       while(dt > step) {
+	 dt = dt - step;
+	 update();
+	 //console.log( day );			
+       }
+       //render(dt);
+       last = now;
+       requestAnimationFrame(frame);
+     }
 
-	requestAnimationFrame(frame);
-	
-	</script>
+     requestAnimationFrame(frame);
+     
+    </script>
   </body>
 </html>
