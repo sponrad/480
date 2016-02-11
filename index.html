@@ -12,7 +12,6 @@
   <body>
     <div id="hello"></div>
     <div id="world"></div>
-    <script src="bundle.js"></script>
     <div class="container-fluid" id="480">
 
       <div class="row">
@@ -64,14 +63,15 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="rivets.bundled.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
+    <script src="rivets.bundled.min.js"></script>    
     <script>
      google.charts.load('current', {packages: ['corechart', 'line']});
+     var data = null;
+     var chart, options;
      google.charts.setOnLoadCallback(drawBackgroundColor);
      function drawBackgroundColor() {
-       var data = new google.visualization.DataTable();
+       data = new google.visualization.DataTable();
        data.addColumn('number', 'X');
        data.addColumn('number', 'Price');
 
@@ -90,7 +90,7 @@
          [66, 70], [67, 72], [68, 75], [69, 80]
        ]);
 
-       var options = {
+       options = {
          hAxis: {
            title: 'Day'
          },
@@ -100,9 +100,9 @@
          backgroundColor: '#ffffff'
        };
 
-       var chart = new google.visualization.LineChart(document.getElementById('real_estate_chart_div'));
+       chart = new google.visualization.LineChart(document.getElementById('real_estate_chart_div'));
        chart.draw(data, options);
-       var chart = new google.visualization.LineChart(document.getElementById('stock_chart_div'));
+       chart = new google.visualization.LineChart(document.getElementById('stock_chart_div'));
        chart.draw(data, options);
      }
      
@@ -151,35 +151,8 @@
      
      game = new Game();
      
-     function update(){
-       game.day += 1;
-       game.update();
-       game.player.networth += 3;
-       //game.processevents
-     }
-     
-     rivets.bind($('#480'), { game: game });
-     
-     var now,
-	 dt   = 0,
-	 last = timestamp(),
-	 step = 1;
-
-     function frame() {
-       now = timestamp();
-       dt = dt + Math.min(1, (now - last) / 1000);
-       while(dt > step) {
-	 dt = dt - step;
-	 update();
-	 //console.log( day );			
-       }
-       //render(dt);
-       last = now;
-       requestAnimationFrame(frame);
-     }
-
-     requestAnimationFrame(frame);
-     
     </script>
+    
+    <script src="bundle.js"></script>
   </body>
 </html>
