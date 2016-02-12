@@ -67,8 +67,10 @@
     <script>
      google.charts.load('current', {packages: ['corechart', 'line']});
      google.charts.setOnLoadCallback(drawBackgroundColor);
+     var data = null;
+     var chart, options;
      function drawBackgroundColor() {
-       var data = new google.visualization.DataTable();
+       data = new google.visualization.DataTable();
        data.addColumn('number', 'X');
        data.addColumn('number', 'Price');
 
@@ -87,7 +89,7 @@
          [66, 70], [67, 72], [68, 75], [69, 80]
        ]);
 
-       var options = {
+       options = {
          hAxis: {
            title: 'Day'
          },
@@ -97,9 +99,9 @@
          backgroundColor: '#ffffff'
        };
 
-       var chart = new google.visualization.LineChart(document.getElementById('real_estate_chart_div'));
+       chart = new google.visualization.LineChart(document.getElementById('real_estate_chart_div'));
        chart.draw(data, options);
-       var chart = new google.visualization.LineChart(document.getElementById('stock_chart_div'));
+       chart = new google.visualization.LineChart(document.getElementById('stock_chart_div'));
        chart.draw(data, options);
      }
      
@@ -153,6 +155,8 @@
        game.update();
        game.player.networth += 3;
        //game.processevents
+       data.addRow([ (game.day+69), Math.floor(Math.random()*100) ] );
+       chart.draw(data, options);
      }
      
      rivets.bind($('#480'), { game: game });
