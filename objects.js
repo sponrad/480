@@ -36,3 +36,21 @@ function Asset(){
     this.paymentamount = 0;
     this.paymentdue = 0;
 }
+
+function Market(){
+    this.volatility = 1;
+    this.data = [1];
+    this.bubble = [];
+    this.price = 1;
+    this.cycleyears = 1
+    this.newPrice = function(){
+        change = 2 * this.volatility * Math.random()
+        if (change > volatility)
+            change -= (2 * volatility);
+        change_amount = this.old_price * change;
+        this.price += change_amount;
+        this.data.push(this.price);
+    }
+}
+
+//market=base increase inc. inflation %  + 7 year bubble cycle factor + daily growth 
