@@ -1,2 +1,1 @@
-import Hello from './test.jsx';
-import World from './test.jsx';
+import World from './world.jsx';
