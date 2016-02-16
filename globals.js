@@ -1,9 +1,6 @@
-var data = null;
-var chart, options;
+data = null;
+chart = null;
+options = null;
+game = null;
 
 INFLATION_RATE = 0.04;
-
-game = new Game();
-
-google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawBackgroundColor);
