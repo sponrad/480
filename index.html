@@ -44,7 +44,6 @@
 	    <li>Home Loan: NA</li>
 	    <li>Etc.</li>
 	  </ul>
-
 	</div>
 	
 	<div class="col-md-6">
@@ -68,40 +67,6 @@
     <script type="text/javascript" src="objects.js"></script>
     <script type="text/javascript" src="functions.js"></script>
     <script type="text/javascript" src="init.js"></script>
-    
-    <script>
-     function update(){
-       game.day += 1;
-       game.update();
-       game.player.networth += 3;
-       //game.processevents
-       data.addRow([ (game.day+69), Math.floor(Math.random()*100) ] );
-       chart.draw(data, options);
-     }
-     
-     rivets.bind($('#480'), { game: game });
-     
-     var now,
-	 dt   = 0,
-	 last = timestamp(),
-	 step = 0.5;
-
-     function frame() {
-       now = timestamp();
-       dt = dt + Math.min(1, (now - last) / 1000);
-       while(dt > step) {
-	 dt = dt - step;
-	 update();
-	 //console.log( day );			
-       }
-       //render(dt);
-       last = now;
-       requestAnimationFrame(frame);
-     }
-     
-     requestAnimationFrame(frame);
-     
-     
-    </script>
+   
   </body>
 </html>
