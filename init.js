@@ -21,6 +21,7 @@ $(document).keyup(function(e){
       chrono = setInterval(globalUpdate, DELAY);
     }
     else {
+      clearInterval(chrono);
       chrono = null;
     }
   }
