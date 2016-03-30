@@ -4,11 +4,19 @@ function Game(){
     this.month = 0;
     this.year = 0;
     this.player = new Player();
-    this.markets = [];
+    this.stockprice = 0;
+    this.reprice = 0;
+    this.assets = [];
     this.update = function(){
+
 	this.monthday = function(){ return (this.day % 30)+1; }
 	this.month = function(){ return (Math.floor((this.day%360)/30))+1; }
 	this.year = function(){ return (Math.floor(this.day/360))+1;}
+
+        //game.processevents
+        
+        this.stockprice = stockMarket.price.toFixed(1);
+        this.reprice = reMarket.price.toFixed(1);
     }  
 }
 
@@ -39,7 +47,7 @@ function Asset(){
 }
 
 function Market(){
-    this.volatility = 0.1;
+    this.volatility = 0.005;
     this.data = [];
     this.bubble = [];
     this.price = 1;

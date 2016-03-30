@@ -28,7 +28,7 @@
       
       <div class="row">
 	<div class="col-md-6">
-	  <h2>Name: { game.player.name }</h2>
+	  <h2>Name: { game.player.name }, { game.player.occupation }</h2>          
 	  <select class='form-control'><option>Frugal</option><option>Somewhat frugal</option><option>Normal</option><option>Somewhat lavish</option><option>Lavish</option></select>
 	  
 	  <h2>Humanity: ☺</h2>
@@ -36,7 +36,7 @@
 	  <h2>Monthly Income: $4,500 <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></h2>
 	  <h2>Monthly Payments: $3,800</h2>
 	  <h2>Net Worth: ${ game.player.networth } <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></h2>
-	  <h2>Assets and Liabilities: <button class="btn btn-primary">Buy something</button></h2>
+	  <h2>Assets and Liabilities: <button class="btn btn-primary">buy/sell</button></h2>
 	  <ul style="list-style-type:none">
 	    <li>Cash: <span style="color: green;">$90</span> </li>
 	    <li>Student Loan: <span style="color: red;">$45</span> </li>
@@ -48,9 +48,9 @@
 	
 	<div class="col-md-6">
 	  <div id="console">Welcome to 480.</div>
-	  <h2>Real Estate Market <button class='btn btn-primary'>invest</button></h2>
+	  <h2>Real Estate Market ${ game.reprice } <button class='btn btn-primary'>buy/sell</button></h2>
 	  <div id="real_estate_chart_div"></div>
-	  <h2>Stock Market <button class='btn btn-primary'>invest</button></h2>
+	  <h2>Stock Market ${ game.stockprice } <button class='btn btn-primary'>buy/sell</button></h2>
 	  <div id="stock_chart_div"></div>
 	</div>
 	

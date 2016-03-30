@@ -1,9 +1,8 @@
-function update(){
+function globalUpdate(){
   console.log( game.day );
   game.day += 1;
   game.update();
   game.player.networth += 3;
-  //game.processevents
 
   stockMarket.newPrice();
   reMarket.newPrice();
@@ -13,7 +12,6 @@ function update(){
 
   redata.addRow([ (game.day), reMarket.price ] );
   rechart.draw(redata, options);
-  //updateCharts();
 }
 
 function drawCharts() {
