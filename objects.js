@@ -4,11 +4,12 @@ function Game(){
     this.month = 0;
     this.year = 0;
     this.player = new Player();
+    this.markets = [];
     this.update = function(){
 	this.monthday = function(){ return (this.day % 30)+1; }
 	this.month = function(){ return (Math.floor((this.day%360)/30))+1; }
 	this.year = function(){ return (Math.floor(this.day/360))+1;}
-    }
+    }  
 }
 
 function Player(){
@@ -38,16 +39,16 @@ function Asset(){
 }
 
 function Market(){
-    this.volatility = 1;
-    this.data = [1];
+    this.volatility = 0.1;
+    this.data = [];
     this.bubble = [];
     this.price = 1;
-    this.cycleyears = 1
+    this.cycleyears = 1;
     this.newPrice = function(){
-        change = 2 * this.volatility * Math.random()
-        if (change > volatility)
-            change -= (2 * volatility);
-        change_amount = this.old_price * change;
+        change = 2 * this.volatility * Math.random();
+        if (change > this.volatility)
+            change -= (2 * this.volatility);
+        change_amount = this.price * change;
         this.price += change_amount;
         this.data.push(this.price);
     }
