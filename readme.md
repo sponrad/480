@@ -15,5 +15,5 @@ Uses
 
 * jQuery
 * Rivets.js
-* Google charts
+* d3.js / c3.js
 * Bootstrap
