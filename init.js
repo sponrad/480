@@ -7,8 +7,7 @@ reMarket.price = 250;
 stockMarket.price = 1800;
 stockMarket.volatility = 0.1;
 
-google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawCharts);
+drawC3Charts();
 
 rivets.bind($('#480'), { game: game });
 

@@ -7,34 +7,64 @@ function globalUpdate(){
   stockMarket.newPrice();
   reMarket.newPrice();
 
-  stockdata.addRow([ (game.day), stockMarket.price ] );
-  stockchart.draw(stockdata, options);
+  rechart.flow({
+    rows: [
+      ['Price'],
+      [parseFloat( reMarket.price.toFixed(1) )]
+    ],
+    to: 0,
+    duration: 0.3
+  });
 
-  redata.addRow([ (game.day), reMarket.price ] );
-  rechart.draw(redata, options);
+  stockchart.flow({
+    rows: [
+      ['Price'],
+      [parseFloat( stockMarket.price.toFixed(1) )]
+    ],
+    to: 0,
+    duration: 0.3
+  });
+
 }
 
-function drawCharts() {
-  redata = new google.visualization.DataTable();
-  redata.addColumn('number', 'X');
-  redata.addColumn('number', 'Price');
-
-  stockdata = new google.visualization.DataTable();
-  stockdata.addColumn('number', 'X');
-  stockdata.addColumn('number', 'Price');
-
-  options = {
-    hAxis: {
-      title: 'Day'
+function drawC3Charts() {
+  rechart = c3.generate({
+    bindto: '#real_estate_chart_div',
+    data: {
+      rows: [
+        ['Price'],
+        [reMarket.price]
+      ]
     },
-    vAxis: {
-      title: 'Price'
+    legend: {
+      show: false,
     },
-    backgroundColor: '#ffffff'
-  };
-  
-  rechart = new google.visualization.LineChart(document.getElementById('real_estate_chart_div'));
-  rechart.draw(redata, options);
-  stockchart = new google.visualization.LineChart(document.getElementById('stock_chart_div'));
-  stockchart.draw(stockdata, options);
+    point: {
+      show: false
+    },
+    size: {
+      height: 240,
+      width: 400,
+    },
+  });
+
+  stockchart = c3.generate({
+    bindto: '#stock_chart_div',
+    data: {
+      rows: [
+        ['Price'],
+        [stockMarket.price]
+      ]
+    },
+    legend: {
+      show: false,
+    },
+    point: {
+      show: false
+    },
+    size: {
+      height: 240,
+      width: 400,
+    },
+  });
 }

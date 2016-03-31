@@ -1,7 +1,6 @@
-redata = null;
 rechart = null;
 reMarket = null;
-stockdata = null;
+
 stockchart = null;
 stockMarket = null;
 
