@@ -7,34 +7,38 @@ function globalUpdate(){
   stockMarket.newPrice();
   reMarket.newPrice();
 
-  rechart.flow({
-    rows: [
-      ['Price'],
-      [parseFloat( reMarket.price.toFixed(1) )]
-    ],
-    to: 0,
-    duration: 0.3
-  });
-
-  stockchart.flow({
-    rows: [
-      ['Price'],
-      [parseFloat( stockMarket.price.toFixed(1) )]
-    ],
-    to: 0,
-    length: 30,
-    duration: 0.3
-  });
-
+  updateC3Charts();
 }
 
-function drawC3Charts() {
+function updateC3Charts(){
+  tempREData = ['Price'];
+  tempREData = tempREData.concat( reMarket.data );
+
+  rechart.load({
+    columns: [
+      tempREData
+    ]
+  });
+
+  tempStockData = ['Price'];
+  tempStockData = tempStockData.concat( stockMarket.data );
+
+  stockchart.load({
+    columns: [
+      tempStockData
+    ]
+  });
+}
+
+function generateC3Charts() {
+  tempREData = ['Price'];
+  tempREData = tempREData.concat( reMarket.data );
+
   rechart = c3.generate({
     bindto: '#real_estate_chart_div',
     data: {
-      rows: [
-        ['Price'],
-        [reMarket.price]
+      columns: [
+        tempREData
       ]
     },
     legend: {
@@ -49,12 +53,14 @@ function drawC3Charts() {
     },
   });
 
+  tempStockData = ['Price'];
+  tempStockData = tempStockData.concat( stockMarket.data );
+
   stockchart = c3.generate({
     bindto: '#stock_chart_div',
     data: {
-      rows: [
-        ['Price'],
-        [stockMarket.price]
+      columns: [
+        tempStockData
       ]
     },
     legend: {

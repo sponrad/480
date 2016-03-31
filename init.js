@@ -2,12 +2,14 @@ reMarket = new Market();
 stockMarket = new Market();
 
 reMarket.price = 125;
+reMarket.data = [reMarket.price]
 stockMarket.price = 1800;
+stockMarket.data = [stockMarket.price]
 stockMarket.volatility = 0.1;
 
 game = new Game();
 
-drawC3Charts();
+generateC3Charts();
 
 rivets.bind($('#480'), { game: game });
 

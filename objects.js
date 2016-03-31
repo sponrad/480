@@ -58,7 +58,7 @@ function Market(){
             change -= (2 * this.volatility);
         change_amount = this.price * change;
         this.price += change_amount;
-        this.data.push(this.price);
+        this.data.push(parseFloat( this.price.toFixed(1) ));
     }
 }
 
