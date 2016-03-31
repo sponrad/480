@@ -22,6 +22,7 @@ function globalUpdate(){
       [parseFloat( stockMarket.price.toFixed(1) )]
     ],
     to: 0,
+    length: 30,
     duration: 0.3
   });
 
@@ -67,4 +68,19 @@ function drawC3Charts() {
       width: 400,
     },
   });
+}
+
+function pause(){
+  clearInterval(chrono);
+  chrono = null;
+
+  $("#pauseButton").css("color", "blue");
+  $("#playButton").css("color", "#333");
+}
+
+function play(){
+  chrono = setInterval(globalUpdate, DELAY);
+
+  $("#pauseButton").css("color", "#333");
+  $("#playButton").css("color", "blue");
 }
