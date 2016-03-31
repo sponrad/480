@@ -1,5 +1,5 @@
 function globalUpdate(){
-  console.log( game.day );
+  //console.log( game.day );
   game.day += 1;
   game.update();
   game.player.networth += 3;

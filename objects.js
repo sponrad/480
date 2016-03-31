@@ -49,14 +49,18 @@ function Asset(){
 function Market(){
   this.volatility = 0.005;
   this.data = []
-  this.bubble = [];
+  this.fortyYearMultiple = 1;
   this.price = 1;
-  this.cycleyears = 1;
+  this.startingPrice = 1;
   this.newPrice = function(){
     change = 2 * this.volatility * Math.random();
     if (change > this.volatility)
       change -= (2 * this.volatility);
     change_amount = this.price * change;
+    base_value = this.startingPrice * Math.pow(game.day, 2) * this.fortyYearMultiple / Math.pow(14400,2);
+    if ( (this.price + change_amount) < base_value){
+      change_amount = Math.abs(change_amount);
+    }
     this.price += change_amount;
     this.data.push(parseFloat( this.price.toFixed(1) ));
   }
