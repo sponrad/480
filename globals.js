@@ -8,5 +8,5 @@ options = null;
 game = null;
 chrono = null;
 
-DELAY = 1; //in ms
+DELAY = 0; //in ms
 INFLATION_RATE = 0.04;

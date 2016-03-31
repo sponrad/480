@@ -1,9 +1,9 @@
 function Game(){
   this.day = 0;
   this.monthday = 0;
-  this.month = 0;
+  this.month = 1;
   this.year = 0;
-  this.age = 20;
+  this.age = 23;
   this.player = new Player();
   this.stockprice = stockMarket.price.toFixed(1);
   this.reprice = reMarket.price.toFixed(1);
@@ -11,9 +11,10 @@ function Game(){
   this.update = function(){
 
 	  this.monthday = function(){ return (this.day % 30)+1; }
-	  this.month = function(){ return (Math.floor((this.day%360)/30))+1; }
+	  //this.month = function(){ return (Math.floor((this.day%360)/30))+1; }
+    this.month = function(){ return (Math.floor(this.day/30))+1; }
 	  this.year = function(){ return (Math.floor(this.day/360))+1;}
-
+    this.age = function(){ return (Math.floor(this.day/360))+23;}
     //game.processevents
     
     this.stockprice = stockMarket.price.toFixed(1);
@@ -66,5 +67,3 @@ function Market(){
     this.data.push(parseFloat( this.price.toFixed(1) ));
   }
 }
-
-//market=base increase inc. inflation %  + 7 year bubble cycle factor + daily growth 
