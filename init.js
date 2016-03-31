@@ -1,7 +1,7 @@
 reMarket = new Market();
 stockMarket = new Market();
 
-reMarket.price = 250;
+reMarket.price = 125;
 stockMarket.price = 1800;
 stockMarket.volatility = 0.1;
 
