@@ -2,9 +2,9 @@ reMarket = new Market();
 stockMarket = new Market();
 
 reMarket.price = 125;
-reMarket.data = [reMarket.price]
+reMarket.data.push(reMarket.price);
 stockMarket.price = 1800;
-stockMarket.data = [stockMarket.price]
+stockMarket.data.push(stockMarket.price);
 stockMarket.volatility = 0.1;
 
 game = new Game();

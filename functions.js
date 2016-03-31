@@ -12,7 +12,7 @@ function globalUpdate(){
 
 function updateC3Charts(){
   tempREData = ['Price'];
-  tempREData = tempREData.concat( reMarket.data );
+  tempREData = tempREData.concat( reMarket.data.slice(-150) );
 
   rechart.load({
     columns: [
@@ -21,7 +21,7 @@ function updateC3Charts(){
   });
 
   tempStockData = ['Price'];
-  tempStockData = tempStockData.concat( stockMarket.data );
+  tempStockData = tempStockData.concat( stockMarket.data.slice(-150) );
 
   stockchart.load({
     columns: [
@@ -51,6 +51,10 @@ function generateC3Charts() {
       height: 240,
       width: 400,
     },
+    transition: {
+      duration: 0
+    },
+
   });
 
   tempStockData = ['Price'];
@@ -73,6 +77,9 @@ function generateC3Charts() {
       height: 240,
       width: 400,
     },
+    transition: {
+      duration: 0
+    }
   });
 }
 
