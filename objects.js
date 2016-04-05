@@ -42,18 +42,17 @@ function Player(){
   this.assets.push( new stockAsset(2500) );
 
   this.update = function(){
+    for (let asset of this.assets) {
+      asset.update();
+    }
+    
     this.networth = function(){
       sum = 0;
       for (let asset of this.assets){
         sum += asset.value;
       }
-      console.log("sum " + sum);
       return sum;
-    }
-    
-    for (let asset of this.assets) {
-      asset.update();
-    }
+    }    
   }
 }
 
