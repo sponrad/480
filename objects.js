@@ -28,7 +28,7 @@ function Player(){
   this.name = "Zebedee Stanley";
   this.occupation = "Broker";
   this.assets = [];
-  this.humanity = 2;
+  this.happiness = 90;
   this.income = 4800;
   this.payments = 4600;
   this.networth = 0;

@@ -14,45 +14,47 @@
     <div class="container-fluid" id="480">
 
       <div class="row">
-	      <div class="col-md-6">
-	        <h1>480</h1>
-	      </div>
-	      
-	      <div class="col-md-6">
-	        <span>Month: { game.day }</span>
-	        <span style="color: blue;" class="glyphicon glyphicon-pause" aria-hidden="true" id="pauseButton"></span>
-	        <span class="glyphicon glyphicon-play" aria-hidden="true" id="playButton"></span>
+	<div class="col-md-6">
+	  <h1>480</h1>
+	</div>
+	
+	<div class="col-md-6">
+	  <span>Month: { game.day }</span>
+	  <span style="color: blue;" class="glyphicon glyphicon-pause" aria-hidden="true" id="pauseButton"></span>
+	  <span class="glyphicon glyphicon-play" aria-hidden="true" id="playButton"></span>
           <!-- 
-	        <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
-	        <span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span>
-          -->
-	      </div>
+	       <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+	       <span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span>
+             -->
+	</div>
       </div>
       
       <div class="row">
-	      <div class="col-md-6">
-	        <h2>Name: { game.player.name }, { game.player.occupation }</h2>          
-	        <select class='form-control'><option>Frugal</option><option>Somewhat frugal</option><option selected>Normal</option><option>Somewhat lavish</option><option>Lavish</option></select>
-	        
-	        <h2>Humanity: ☺</h2>
+	<div class="col-md-6">
 
-	        <h2>Monthly Income: ${ game.player.income }</span></h2>
-	        <h2>Monthly Payments: ${ game.player.payments }</h2>
-	        <h2>Net Worth: ${ game.player.networth }</span></h2>
-	        <h2>Things You Own: <button class="btn btn-primary" data-toggle="modal" data-target="#shopModal">buy</button></h2>
-	        <ul style="list-style-type:none">
-                  <li rv-each-asset="game.player.assets">{ asset.name }: ${ asset.value }</li>
-	        </ul>
-	      </div>
-	      
-	      <div class="col-md-6">
-	        <div id="console">Welcome to 480. Press space to start.</div>
-	        <h2>Real Estate Market ${ game.reprice } ppsf <button class='btn btn-primary' data-target="#buySellREModal" data-toggle="modal">buy</button></h2>
-	        <div id="real_estate_chart_div"></div>
-	        <h2>Stock Market ${ game.stockprice } <button class='btn btn-primary' data-target="#buySellStockModal" data-toggle="modal">trade</button></h2>
-	        <div id="stock_chart_div"></div>
-	      </div>
-	      
+          <h2>Net Worth: ${ game.player.networth|currency }</h2>
+          <h2>Happiness: { game.player.happiness }</h2>
+
+          <h3>Spending:</h3>
+	  <select class='form-control'><option>Frugal</option><option>Somewhat frugal</option><option selected>Normal</option><option>Somewhat lavish</option><option>Lavish</option></select>
+
+	  <h2>Monthly Income: ${ game.player.income|currency }</span></h2>
+	  <h2>Monthly Payments: ${ game.player.payments|currency }</h2>
+          
+	  <h2>Things You Own: <button class="btn btn-primary" data-toggle="modal" data-target="#shopModal">buy</button></h2>
+	  <ul style="list-style-type:none">
+            <li rv-each-asset="game.player.assets">{ asset.name }: ${ asset.value|currency }</li>
+	  </ul>
+	</div>
+	
+	<div class="col-md-6">
+	  <div id="console">Welcome to 480. Press space to start.</div>
+	  <h2>Real Estate Market ${ game.reprice|currency } ppsf <button class='btn btn-primary' data-target="#buySellREModal" data-toggle="modal">buy</button></h2>
+	  <div id="real_estate_chart_div"></div>
+	  <h2>Stock Market ${ game.stockprice|currency } <button class='btn btn-primary' data-target="#buySellStockModal" data-toggle="modal">trade</button></h2>
+	  <div id="stock_chart_div"></div>
+	</div>
+	
       </div>
 
       <!-- MODALS -->
@@ -64,7 +66,7 @@
               <h4 class="modal-title">Buy Real Estate</h4>
             </div>
             <div class="modal-body">
-              <h2>Price: ${ game.reprice }</h2>
+              <h2>Price: ${ game.reprice|currency }</h2>
               <form class="form-inline">
                 <div class="form-group">
                   <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
@@ -94,8 +96,8 @@
               <h4 class="modal-title">Trade Stock</h4>
             </div>
             <div class="modal-body">
-              <h2>Price: ${ game.stockprice }</h2>
-              <h2>Cash: ${ game.player.cash }</h2>
+              <h2>Price: ${ game.stockprice|currency }</h2>
+              <h2>Cash: ${ game.player.cash|currency }</h2>
               <form class="form-inline">
 
                 <div class="form-group">
@@ -150,31 +152,31 @@
                     </div>
                   </div>
 
-              
+                  
               </form>              
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary" id="shoppingBuyButton">Buy</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary" id="shoppingBuyButton">Buy</button>
+                </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
-      <!-- ENDMODALS -->
+        <!-- ENDMODALS -->
+        
+      </div>
+
+      <script src="jquery.min.js"></script>
+      <script src="bootstrap.min.js"></script>
+      <script src="rivets.bundled.min.js"></script>
+      <script src="d3.min.js"></script>
+      <script src="c3.min.js"></script>
+
+      <script type="text/javascript" src="globals.js"></script>
+      <script type="text/javascript" src="objects.js"></script>
+      <script type="text/javascript" src="functions.js"></script>
+      <script type="text/javascript" src="init.js"></script>
       
-    </div>
-
-    <script src="jquery.min.js"></script>
-    <script src="bootstrap.min.js"></script>
-    <script src="rivets.bundled.min.js"></script>
-    <script src="d3.min.js"></script>
-    <script src="c3.min.js"></script>
-
-    <script type="text/javascript" src="globals.js"></script>
-    <script type="text/javascript" src="objects.js"></script>
-    <script type="text/javascript" src="functions.js"></script>
-    <script type="text/javascript" src="init.js"></script>
-    
   </body>
 </html>
