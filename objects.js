@@ -10,15 +10,17 @@ function Game(){
   this.assets = [];
   this.update = function(){
 
-	  this.monthday = function(){ return (this.day % 30)+1; }
-	  //this.month = function(){ return (Math.floor((this.day%360)/30))+1; }
+    this.monthday = function(){ return (this.day % 30)+1; }
+    //this.month = function(){ return (Math.floor((this.day%360)/30))+1; }
     this.month = function(){ return (Math.floor(this.day/30))+1; }
-	  this.year = function(){ return (Math.floor(this.day/360))+1;}
+    this.year = function(){ return (Math.floor(this.day/360))+1;}
     this.age = function(){ return (Math.floor(this.day/360))+23;}
     //game.processevents
     
     this.stockprice = stockMarket.price.toFixed(1);
     this.reprice = reMarket.price.toFixed(1);
+
+    this.player.update();
   }  
 }
 
@@ -27,25 +29,57 @@ function Player(){
   this.occupation = "Broker";
   this.assets = [];
   this.humanity = 2;
-  this.networth = 45;
-  this.monthlyincome =  function(){};
-  this.monthlydebts = function(){};
-  this.totalassets = function(){};
-  this.totaldebts = function(){};
+  this.income = 4800;
+  this.payments = 4600;
+  this.networth = 0;
+  this.cash = 0;
+
+  this.assets.push( new Asset("Cash", 500, function(){
+    this.value += game.player.income - game.player.payments;
+    game.player.cash = this.value;
+  }));
+  this.assets.push( new Asset("Rent, $800/mo", 0) );
+  this.assets.push( new stockAsset(2500) );
+
+  this.update = function(){
+    this.networth = function(){
+      sum = 0;
+      for (let asset of this.assets){
+        sum += asset.value;
+      }
+      console.log("sum " + sum);
+      return sum;
+    }
+    
+    for (let asset of this.assets) {
+      asset.update();
+    }
+  }
 }
 
-function Asset(){
-  //id
-  this.type = "home"; //(home, rental home, rental they live in, loan, bank account, credit card, ETC)
-  this.name = "Apartment";
-  this.interest = 0;
-  this.payment = 800;
-  this.happinessfactor = 1; //- does this add or detract from happiness
-  this.currentvalue = 0;
-  this.pastvalues = []; //(list of values per days)
-  this.generatenextvalue = 0;
-  this.paymentamount = 0;
-  this.paymentdue = 0;
+function Asset(name, value, update=null){
+  this.name = name;
+  this.value = value;
+
+  if (update){
+    this.update = update;
+  }
+  else{
+    this.update = function(){
+      //should be defined when the asset is created
+    }
+  }
+}
+
+function stockAsset(amt){
+  this.value = amt;
+  this.startingValue = amt;
+  this.shares = this.startingValue / stockMarket.price;
+  this.name = "Stock " + this.shares.toFixed(2) + " shares";
+
+  this.update = function(){
+    this.value = parseFloat((stockMarket.price * this.shares).toFixed(1));
+  }
 }
 
 function Market(){
@@ -59,13 +93,17 @@ function Market(){
     if (change > this.volatility)
       change -= (2 * this.volatility);
     change_amount = this.price * change;
-    //base_value = this.startingPrice * Math.pow(game.day, 2) * this.fortyYearMultiple / Math.pow(14400,2);
     base_value = this.startingPrice * Math.pow(game.day, 2) * this.fortyYearMultiple / Math.pow(960,2);
-    //base_value = this.startingPrice * Math.pow(game.day, 2) * this.fortyYearMultiple * 0.0000010850694444444444;
     if ( (this.price + change_amount) < base_value){
       change_amount = Math.abs(change_amount);
     }
     this.price += change_amount;
     this.data.push(parseFloat( this.price.toFixed(1) ));
+  }
+  this.buy = function(amt){
+    
+  }
+  this.sell = function(amt){
+    
   }
 }

@@ -1,6 +1,10 @@
 function globalUpdate(){
   //console.log( game.day );
   game.day += 1;
+
+  stockMarket.newPrice();
+  reMarket.newPrice();
+  
   game.update();
 
   if (game.day == 480){
@@ -8,10 +12,6 @@ function globalUpdate(){
     pause();
     alert("480");
   }
-  game.player.networth += 3;
-
-  stockMarket.newPrice();
-  reMarket.newPrice();
 
   //updateC3Charts();
 }

@@ -36,16 +36,12 @@
 	        
 	        <h2>Humanity: ☺</h2>
 
-	        <h2>Monthly Income: $4,500 <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></h2>
-	        <h2>Monthly Payments: $3,800</h2>
+	        <h2>Monthly Income: ${ game.player.income } <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></h2>
+	        <h2>Monthly Payments: ${ game.player.payments }</h2>
 	        <h2>Net Worth: ${ game.player.networth } <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></h2>
 	        <h2>Things You Own: <button class="btn btn-primary" data-toggle="modal" data-target="#shopModal">buy</button></h2>
 	        <ul style="list-style-type:none">
-	          <li>Cash: <span style="color: green;">$90</span> </li>
-	          <li>Student Loan: <span style="color: red;">$45</span> </li>
-	          <li>Apartment: $0, $800 rent on the 1st</li>
-	          <li>Home Loan: NA</li>
-	          <li>Etc.</li>
+                  <li rv-each-asset="game.player.assets">{ asset.name }: ${ asset.value }</li>
 	        </ul>
 	      </div>
 	      
@@ -90,7 +86,7 @@
 
 
 
-      <div class="modal fade" tabindex="-1" role="dialog" id="buySellStockModal">
+      <div class="modal fade" tabindex="-1" role="dialog" id="buySellStockModal">b
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -99,6 +95,7 @@
             </div>
             <div class="modal-body">
               <h2>Price: ${ game.stockprice }</h2>
+              <h2>Cash: ${ game.player.cash }</h2>
               <form class="form-inline">
 
                 <div class="form-group">
