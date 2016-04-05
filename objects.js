@@ -29,7 +29,7 @@ function Player(){
   this.occupation = "Broker";
   this.assets = [];
   this.happiness = 90;
-  this.income = 4800;
+  this.income = 0;
   this.payments = 4600;
   this.networth = 0;
   this.cash = 0;
@@ -38,27 +38,35 @@ function Player(){
     this.value += game.player.income - game.player.payments;
     game.player.cash = this.value;
   }));
-  this.assets.push( new Asset("Rent, $800/mo", 0) );
+  this.assets.push( new Job("Entry Level", 4800) );
+  this.assets.push( new Asset("Rent", 0, update=null, income=0, payment=800) );
+  this.assets.push( new Asset("Expenses", 0, update=null, income=0, payment=3800) );
   this.assets.push( new stockAsset(2500) );
 
   this.update = function(){
+    income = 0;
+    payments = 0;
+    networth = 0;
+
     for (let asset of this.assets) {
       asset.update();
+      income += asset.income;
+      payments += asset.payment;
+      networth += asset.value;
     }
     
-    this.networth = function(){
-      sum = 0;
-      for (let asset of this.assets){
-        sum += asset.value;
-      }
-      return sum;
-    }    
+    this.income = income;
+    this.payments = payments;
+    this.networth = networth;
+    
   }
 }
 
-function Asset(name, value, update=null){
+function Asset(name, value, update=null, income=0, payment=0){
   this.name = name;
   this.value = value;
+  this.income = income;
+  this.payment = payment;
 
   if (update){
     this.update = update;
@@ -70,8 +78,20 @@ function Asset(name, value, update=null){
   }
 }
 
+function Job(name, income){
+  this.income = income;
+  this.payment = 0;
+  this.name = "Job: " + name + "  $" + this.income + " /mo";
+  this.value = 0;
+  this.update = function(){
+    //change earnings over time?
+  }
+}
+
 function stockAsset(amt){
   this.value = amt;
+  this.income = 0;
+  this.payment = 0;
   this.startingValue = amt;
   this.shares = this.startingValue / stockMarket.price;
   this.name = "Stock " + this.shares.toFixed(2) + " shares";

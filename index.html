@@ -41,7 +41,7 @@
 	  <h2>Monthly Income: ${ game.player.income|currency }</span></h2>
 	  <h2>Monthly Payments: ${ game.player.payments|currency }</h2>
           
-	  <h2>Things You Own: <button class="btn btn-primary" data-toggle="modal" data-target="#shopModal">buy</button></h2>
+	  <h2>Things That Describe You: <button class="btn btn-primary" data-toggle="modal" data-target="#shopModal">buy</button></h2>
 	  <ul style="list-style-type:none">
             <li rv-each-asset="game.player.assets">{ asset.name }: ${ asset.value|currency }</li>
 	  </ul>
