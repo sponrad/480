@@ -2,17 +2,23 @@ function globalUpdate(){
   //console.log( game.day );
   game.day += 1;
   game.update();
+
+  if (game.day == 480){
+    updateC3Charts();
+    pause();
+    alert("480");
+  }
   game.player.networth += 3;
 
   stockMarket.newPrice();
   reMarket.newPrice();
 
-  updateC3Charts();
+  //updateC3Charts();
 }
 
 function updateC3Charts(){
   tempREData = ['Price'];
-  tempREData = tempREData.concat( reMarket.data.slice(-150) );
+  tempREData = tempREData.concat( reMarket.data.slice(-480) );
 
   rechart.load({
     columns: [
@@ -21,7 +27,7 @@ function updateC3Charts(){
   });
 
   tempStockData = ['Price'];
-  tempStockData = tempStockData.concat( stockMarket.data.slice(-150) );
+  tempStockData = tempStockData.concat( stockMarket.data.slice(-480) );
 
   stockchart.load({
     columns: [

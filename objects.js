@@ -59,7 +59,9 @@ function Market(){
     if (change > this.volatility)
       change -= (2 * this.volatility);
     change_amount = this.price * change;
-    base_value = this.startingPrice * Math.pow(game.day, 2) * this.fortyYearMultiple / Math.pow(14400,2);
+    //base_value = this.startingPrice * Math.pow(game.day, 2) * this.fortyYearMultiple / Math.pow(14400,2);
+    base_value = this.startingPrice * Math.pow(game.day, 2) * this.fortyYearMultiple / Math.pow(960,2);
+    //base_value = this.startingPrice * Math.pow(game.day, 2) * this.fortyYearMultiple * 0.0000010850694444444444;
     if ( (this.price + change_amount) < base_value){
       change_amount = Math.abs(change_amount);
     }

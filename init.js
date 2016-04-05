@@ -4,14 +4,14 @@ stockMarket = new Market();
 reMarket.price = 125;
 reMarket.startingPrice = 125;
 reMarket.data.push(reMarket.price);
-reMarket.volatility = 0.008;
+reMarket.volatility = 0.03;
 reMarket.fortyYearMultiple = 4;
 
 stockMarket.price = 1800;
 stockMarket.startingPrice = 1800;
 stockMarket.data.push(stockMarket.price);
-stockMarket.volatility = 0.07;
-stockMarket.fortyYearMultiple = 10;
+stockMarket.volatility = 0.09;
+stockMarket.fortyYearMultiple = 8;
 
 game = new Game();
 
