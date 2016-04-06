@@ -103,3 +103,7 @@ function play(){
   $("#pauseButton").css("color", "#333");
   $("#playButton").css("color", "blue");
 }
+
+function commas(value){
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}

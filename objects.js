@@ -25,22 +25,21 @@ function Game(){
 }
 
 function Player(){
-  this.name = "Zebedee Stanley";
-  this.occupation = "Broker";
   this.assets = [];
   this.happiness = 90;
   this.income = 0;
-  this.payments = 4600;
+  this.payments = 0;
   this.networth = 0;
   this.cash = 0;
 
   this.assets.push( new Asset("Cash", 500, function(){
     this.value += game.player.income - game.player.payments;
     game.player.cash = this.value;
+    this.updateDescription();
   }));
   this.assets.push( new Job("Entry Level", 4800) );
-  this.assets.push( new Asset("Rent", 0, update=null, income=0, payment=800) );
-  this.assets.push( new Asset("Expenses", 0, update=null, income=0, payment=3800) );
+  this.assets.push( new Asset("Rent", 0, update=null, income=-800) );
+  this.assets.push( new Asset("Expenses", 0, update=null, income=-3600) );
   this.assets.push( new stockAsset(2500) );
 
   this.update = function(){
@@ -50,8 +49,13 @@ function Player(){
 
     for (let asset of this.assets) {
       asset.update();
-      income += asset.income;
-      payments += asset.payment;
+
+      if (asset.income >= 0){
+        income += asset.income;
+      }
+      else {
+        payments += Math.abs(asset.income);
+      }
       networth += asset.value;
     }
     
@@ -62,26 +66,45 @@ function Player(){
   }
 }
 
-function Asset(name, value, update=null, income=0, payment=0){
-  this.name = name;
+function Asset(name, value, update=null, income=0){
   this.value = value;
+  this.name = name;
+  this.description = name
   this.income = income;
-  this.payment = payment;
+
+  this.updateDescription = function(){
+    if (this.value > 0){
+      this.description = this.name + ": $" + commas(this.value);
+    }
+    if (this.income != 0){
+      if (this.income > 0){
+        this.description = this.name + ": $" + commas(this.income);
+      }
+      else {
+        this.description = this.name + ": -$" + commas( Math.abs(this.income) );
+      }
+    }
+  }
+  
+  this.updateDescription();
 
   if (update){
     this.update = update;
   }
   else{
     this.update = function(){
-      //should be defined when the asset is created
+      this.updateDescription();
     }
   }
+
+
 }
 
 function Job(name, income){
   this.income = income;
   this.payment = 0;
-  this.name = "Job: " + name + "  $" + this.income + " /mo";
+  this.name = name;
+  this.description = "Job: " + name + "  $" + this.income + " /mo";
   this.value = 0;
   this.update = function(){
     //change earnings over time?
@@ -94,10 +117,11 @@ function stockAsset(amt){
   this.payment = 0;
   this.startingValue = amt;
   this.shares = this.startingValue / stockMarket.price;
-  this.name = "Stock " + this.shares.toFixed(2) + " shares";
-
+  this.description = "Stock " + this.shares.toFixed(2) + " shares: $" + commas(this.value.toFixed(1));
+  
   this.update = function(){
     this.value = parseFloat((stockMarket.price * this.shares).toFixed(1));
+    this.description = "Stock " + this.shares.toFixed(2) + " shares: $" + commas(this.value.toFixed(1));
   }
 }
 

@@ -18,7 +18,7 @@ game = new Game();
 generateC3Charts();
 
 rivets.formatters.currency = function(value){
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  return commas(value)
 }
 
 rivets.bind($('#480'), { game: game });
