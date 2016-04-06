@@ -55,7 +55,7 @@ function generateC3Charts() {
     },
     size: {
       height: 240,
-      width: 400,
+
     },
     transition: {
       duration: 0
@@ -81,7 +81,7 @@ function generateC3Charts() {
     },
     size: {
       height: 240,
-      width: 400,
+
     },
     transition: {
       duration: 0
