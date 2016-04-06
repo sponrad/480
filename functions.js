@@ -95,6 +95,8 @@ function pause(){
 
   $("#pauseButton").css("color", "blue");
   $("#playButton").css("color", "#333");
+
+  updateC3Charts();
 }
 
 function play(){
