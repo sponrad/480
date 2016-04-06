@@ -37,10 +37,11 @@ function Player(){
     game.player.cash = this.value;
     this.updateDescription();
   }));
+  this.assets.push( new stockAsset(0) );
   this.assets.push( new Job("Entry Level", 4800) );
   this.assets.push( new Asset("Rent", 0, update=null, income=-800) );
   this.assets.push( new Asset("Expenses", 0, update=null, income=-3600) );
-  this.assets.push( new stockAsset(2500) );
+
 
   this.update = function(){
     income = 0;
@@ -115,8 +116,7 @@ function stockAsset(amt){
   this.value = amt;
   this.income = 0;
   this.payment = 0;
-  this.startingValue = amt;
-  this.shares = this.startingValue / stockMarket.price;
+  this.shares = amt / stockMarket.price;
   this.description = "Stock " + this.shares.toFixed(2) + " shares: $" + commas(this.value.toFixed(1));
   
   this.update = function(){

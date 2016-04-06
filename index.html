@@ -41,7 +41,7 @@
 	  <h2>Monthly Income: ${ game.player.income|currency }</span></h2>
 	  <h2>Monthly Payments: ${ game.player.payments|currency }</h2>
           
-	  <h2>Things That Describe You: <button class="btn btn-primary" data-toggle="modal" data-target="#shopModal">buy</button></h2>
+	  <h2>Your Stuff: <button class="btn btn-primary" data-toggle="modal" data-target="#shopModal">buy</button></h2>
 	  <ul style="list-style-type:none">
             <li rv-each-asset="game.player.assets">{ asset.description }</li>
 	  </ul>
@@ -79,8 +79,8 @@
               </form>              
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary" id="buyREButton">Buy</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+              <button type="button" class="btn btn-primary" id="buyREButton">buy</button>
             </div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -88,7 +88,7 @@
 
 
 
-      <div class="modal fade" tabindex="-1" role="dialog" id="buySellStockModal">b
+      <div class="modal fade" tabindex="-1" role="dialog" id="buySellStockModal">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -96,23 +96,40 @@
               <h4 class="modal-title">Trade Stock</h4>
             </div>
             <div class="modal-body">
-              <h2>Price: ${ game.stockprice|currency }</h2>
-              <h2>Cash: ${ game.player.cash|currency }</h2>
-              <form class="form-inline">
+              <h2>Stock Price: ${ game.stockprice|currency }</h2>
+              <h2>Current Cash: ${ game.player.cash|currency }</h2>
+              <form class="form">
 
                 <div class="form-group">
-                  <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="buySellStock" id="buyStock" value="buy" checked>
+                      buy
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="buySellStock" id="sellStock" value="sell">
+                      sell
+                    </label>
+                  </div>
+
+                  <fieldset class="form-group">
+                    <input type="text" class="form-control" id="tradeStockShareCount" placeholder="Number of shares">
+                  </fieldset>
+                  
                   <div class="input-group">
                     <div class="input-group-addon">$</div>
-                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
-                    <div class="input-group-addon">.00</div>
+                    <input type="text" class="form-control" id="tradeStockValue" placeholder="Value" disabled>
                   </div>
                 </div>
-              </form>              
+                
+              </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary" id="buyStockButton">Buy</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+              <button type="button" class="btn btn-primary" id="tradeStockButton">trade</button>
             </div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -156,8 +173,8 @@
               </form>              
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-primary" id="shoppingBuyButton">Buy</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                  <button type="button" class="btn btn-primary" id="shoppingBuyButton">buy</button>
                 </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->

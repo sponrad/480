@@ -107,3 +107,18 @@ function play(){
 function commas(value){
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
+
+function tradeStock(amt, action){
+  amount = parseFloat(amt);
+  shareCount = stockMarket.price / amount;
+  if (action == "buy"){
+    game.player.assets[1].shares += shareCount;
+    game.player.assets[0].value -= amount;
+    game.player.cash -= amount;
+  }
+  if (action == "sell"){
+    game.player.assets[1].shares -= shareCount;
+    game.player.assets[0].value += amount;
+    game.player.cash += amount;
+  }
+}
