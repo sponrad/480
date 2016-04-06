@@ -107,20 +107,25 @@ function play(){
 }
 
 function commas(value){
+  value = parseFloat(parseFloat(value).toFixed(2));
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
 function tradeStock(amt, action){
-  amount = parseFloat(amt);
-  shareCount = stockMarket.price / amount;
+  amount = amt;
+  shareCount = amount / stockMarket.price;
+  console.log(shareCount);
   if (action == "buy"){
     game.player.assets[1].shares += shareCount;
     game.player.assets[0].value -= amount;
     game.player.cash -= amount;
+    game.update();
   }
   if (action == "sell"){
     game.player.assets[1].shares -= shareCount;
     game.player.assets[0].value += amount;
     game.player.cash += amount;
+    game.update();
   }
+  //dismiss the stock modal?
 }

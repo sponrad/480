@@ -40,7 +40,7 @@ $(document).on("click", "#playButton", function(){ play() });
 $(document).on("click", "#pauseButton", function(){ pause() });
 
 $("#tradeStockShareCount").keyup(function(){
-  $("#tradeStockValue").val( $(this).val() * stockMarket.price );
+  $("#tradeStockValue").val( parseFloat(($(this).val() * stockMarket.price).toFixed(1)) );
   if ( ( $("#tradeStockValue").val() > game.player.cash && $("input[name=buySellStock]:checked").val() == "buy") || ($("#tradeStockValue").val() > game.player.assets[1].value && $("input[name=buySellStock]:checked").val() == "sell") ) {
     validTradeFlag = false;
     console.log("invalid trade");
