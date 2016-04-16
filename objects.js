@@ -48,16 +48,16 @@ function Player(){
     payments = 0;
     networth = 0;
 
-    for (let asset of this.assets) {
-      asset.update();
+    for (var i =0; i < this.assets.length; i++) {
+      this.assets[i].update();
 
-      if (asset.income >= 0){
-        income += asset.income;
+      if (this.assets[i].income >= 0){
+        income += this.assets[i].income;
       }
       else {
-        payments += Math.abs(asset.income);
+        payments += Math.abs(this.assets[i].income);
       }
-      networth += asset.value;
+      networth += this.assets[i].value;
     }
     
     this.income = income;
