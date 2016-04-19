@@ -1,4 +1,5 @@
 function Game(){
+  this.paused = true;
   this.day = 0;
   this.monthday = 0;
   this.month = 1;

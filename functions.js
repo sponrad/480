@@ -92,6 +92,15 @@ function generateC3Charts() {
 function pause(){
   clearInterval(chrono);
   chrono = null;
+  if (!game.paused){
+    game.paused = true;
+    console.log("game was not paused but now is!");
+  }
+  else {
+    console.log("game was already paused");
+  }
+
+  generateRentPrice();
 
   $("#pauseButton").css("color", "blue");
   $("#playButton").css("color", "#333");
@@ -101,6 +110,7 @@ function pause(){
 
 function play(){
   chrono = setInterval(globalUpdate, DELAY);
+  game.paused = false;
 
   $("#pauseButton").css("color", "#333");
   $("#playButton").css("color", "blue");
@@ -128,4 +138,55 @@ function tradeStock(amt, action){
     game.update();
   }
   //dismiss the stock modal?
+}
+
+function generateREListings(){
+  //generate a series of listings, sq ft, price etc, based off of reMarket.price
+  var numberOfListings = 1 + Math.floor( Math.random() * 15 );
+  var listings = []
+  var sizes = [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 5000];
+  
+  for (var i = 0; i < numberOfListings; i++){
+    var sqft = sizes[Math.floor(Math.random() * sizes.length)];
+    //random factor for above or below market, 0.95 - 1.05 eg
+    var priceFactor = ((Math.random() * 0.1) + 0.95);
+    var price = (reMarket.price * sqft) * priceFactor;
+    var marketPrice = reMarket.price * sqft;
+
+    console.log(sqft + "  $" + commas(price)  + "  market $" + commas(marketPrice) );
+  }
+}
+
+function acceptREOffer(offer, listPrice){
+  //use some magic to determine if an offer is accepted
+  //if an offer is below listprice then the chance goes down
+  //if an offer is above listprice the the chance goes up
+
+  var percent = offer / listPrice;
+  var coinflip = Math.random();
+
+  console.log(percent + "  coinflip:  " + coinflip);
+ 
+  if (
+    (percent >= 1.1) ||
+    (percent >= 1.05 && coinflip <= 0.9) ||
+    (percent >= 1.0 && coinflip <= 0.85) ||
+    (percent >= 0.95 && coinflip <= 0.75) ||
+    (percent >= 0.90 && coinflip <= 0.5) ||
+    (percent >= 0.80 && coinflip <= 0.20) ||
+    (coinflip <= 0.02)
+  ){
+    return true;
+  }
+  else {
+    return false
+  }
+  
+}
+
+function generateRentPrice(){
+  //generates a new rent price given the real estate market
+  var sqft = 1100
+  var rentPrice = reMarket.price * sqft / 150;
+  console.log( commas(rentPrice) + " /mo" );
 }

@@ -25,7 +25,7 @@ rivets.bind($('#480'), { game: game });
 
 $(document).keyup(function(e){
   //console.log(e);
-  if (e.keyCode == 32){
+  if (e.keyCode == 32){ //space
     e.preventDefault();
     if (chrono == null){
       play();
@@ -50,7 +50,9 @@ $("#tradeStockShareCount").keyup(function(){
     console.log("valid trade");
   }
 });
+
 $(document).on("click", "#tradeStockButton", function(){
+  //check for if the current trade is valid or not
   if (validTradeFlag){
     tradeStock( $("#tradeStockValue").val(), $("input[name=buySellStock]:checked").val() );
     //console.log($("#tradeStockValue").val() + " " +  $("input[name=buySellStock]:checked").val() );
