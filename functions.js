@@ -126,15 +126,15 @@ function tradeStock(amt, action){
   shareCount = amount / stockMarket.price;
   console.log(shareCount);
   if (action == "buy"){
-    game.player.assets[1].shares += shareCount;
-    game.player.assets[0].value -= amount;
-    game.player.cash -= amount;
+    game.player.assets[1].shares = game.player.assets[1].shares * 1.0 + shareCount * 1.0;
+    game.player.assets[0].value = game.player.assets[0].value * 1.0 - amount * 1.0;
+    game.player.cash = game.player.cash * 1.0 - amount * 1.0;
     game.update();
   }
   if (action == "sell"){
-    game.player.assets[1].shares -= shareCount;
-    game.player.assets[0].value += amount;
-    game.player.cash += amount;
+    game.player.assets[1].shares = game.player.assets[1].shares * 1.0 - shareCount * 1.0;
+    game.player.assets[0].value = game.player.assets[0].value * 1.0 + amount * 1.0;
+    game.player.cash = game.player.cash * 1.0 + amount * 1.0;
     game.update();
   }
   //dismiss the stock modal?
