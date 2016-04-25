@@ -61,8 +61,10 @@ $(document).on("click", "#tradeStockButton", function(){
 
 $('#buySellREModal').on('show.bs.modal', function () {
   var listings = generateREListings();
+
+  $("#reListingsRadioDiv").html("");
+
   listings.forEach( function(element, index, array){
-    console.log( element );
 
     var sqft = element[0];
     var price = element[1];

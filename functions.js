@@ -158,7 +158,7 @@ function generateREListings(){
     listings.push( [sqft, price, marketPrice] );
   }
 
-  listings.sort(function(a,b){return parseInt(a[0]) > parseInt(b[0])});
+  listings.sort(function(a,b){return a[0] - b[0] });
     
   return listings;
 }
