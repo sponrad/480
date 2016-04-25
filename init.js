@@ -58,3 +58,16 @@ $(document).on("click", "#tradeStockButton", function(){
     //console.log($("#tradeStockValue").val() + " " +  $("input[name=buySellStock]:checked").val() );
     }
 });
+
+$('#buySellREModal').on('show.bs.modal', function () {
+  var listings = generateREListings();
+  listings.forEach( function(element, index, array){
+    console.log( element );
+
+    var sqft = element[0];
+    var price = element[1];
+    var marketPrice = element[2];
+
+    $("#reListingsRadioDiv").append("<div class='radio'><label><input type='radio' name='reRadios' data-sqft='" + sqft  + "' data-price='" + price + "' data-marketPrice='" + marketPrice + "' value='option1'>" + sqft + " sqft -  $" + commas(price) + "<small> Market: $" + commas(marketPrice) + "</small></label></div>");
+  }); 
+});

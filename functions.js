@@ -142,9 +142,9 @@ function tradeStock(amt, action){
 
 function generateREListings(){
   //generate a series of listings, sq ft, price etc, based off of reMarket.price
-  var numberOfListings = 1 + Math.floor( Math.random() * 15 );
+  var numberOfListings = 5 + Math.floor( Math.random() * 15 );
   var listings = []
-  var sizes = [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 5000];
+  var sizes = [500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 3000, 4000, 5000];
   
   for (var i = 0; i < numberOfListings; i++){
     var sqft = sizes[Math.floor(Math.random() * sizes.length)];
@@ -154,7 +154,13 @@ function generateREListings(){
     var marketPrice = reMarket.price * sqft;
 
     console.log(sqft + "  $" + commas(price)  + "  market $" + commas(marketPrice) );
+    
+    listings.push( [sqft, price, marketPrice] );
   }
+
+  listings.sort(function(a,b){return parseInt(a[0]) > parseInt(b[0])});
+    
+  return listings;
 }
 
 function acceptREOffer(offer, listPrice){
