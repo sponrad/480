@@ -163,6 +163,22 @@ function generateREListings(){
   return listings;
 }
 
+function generateFinancing(price){
+  //given the price, generate down payment and monthly payment for 30 years.
+  downPaymentPercent = 0.20;
+  downPayment = price * 0.20;
+
+  borrowed = price - downPayment;
+
+  //monthlyPaymentEstimate = borrowed / 200;
+  monthlyPaymentEstimate = borrowed / reMarket.price * 1.6;
+
+  console.log( commas(monthlyPaymentEstimate) );
+
+  return( [downPayment, borrowed, monthlyPaymentEstimate] );
+  
+}
+
 function acceptREOffer(offer, listPrice){
   //use some magic to determine if an offer is accepted
   //if an offer is below listprice then the chance goes down
@@ -187,7 +203,6 @@ function acceptREOffer(offer, listPrice){
   else {
     return false
   }
-  
 }
 
 function generateRentPrice(){

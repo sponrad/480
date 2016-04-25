@@ -63,6 +63,7 @@ $('#buySellREModal').on('show.bs.modal', function () {
   var listings = generateREListings();
 
   $("#reListingsRadioDiv").html("");
+  $("#reFinancingDetails").html("");
 
   listings.forEach( function(element, index, array){
 
@@ -70,6 +71,14 @@ $('#buySellREModal').on('show.bs.modal', function () {
     var price = element[1];
     var marketPrice = element[2];
 
-    $("#reListingsRadioDiv").append("<div class='radio'><label><input type='radio' name='reRadios' data-sqft='" + sqft  + "' data-price='" + price + "' data-marketPrice='" + marketPrice + "' value='option1'>" + sqft + " sqft -  $" + commas(price) + "<small> Market: $" + commas(marketPrice) + "</small></label></div>");
+    $("#reListingsRadioDiv").append("<div class='radio'><label><input type='radio' class='reListingRadio' name='reRadios' data-sqft='" + sqft  + "' data-price='" + price + "' data-marketPrice='" + marketPrice + "' value='option1'>" + sqft + " sqft -  $" + commas(price) + "<small> Market: $" + commas(marketPrice) + "</small></label></div>");
   }); 
+});
+
+$('#buySellREModal').on("click", ".reListingRadio", function(e){
+  var financing = generateFinancing( $(e.target).data("price") );
+  // [downPayment, borrowed, monthlyPaymentEstimate]
+
+  $("#reFinancingDetails").html("20% Down Payment: $" + commas(financing[0]) + "<br>Amount Borrowed: $" + commas(financing[1]) + "<br>Monthly Payment: $" + commas(financing[2]) );
+  
 });
