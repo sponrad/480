@@ -211,3 +211,19 @@ function generateRentPrice(){
   var rentPrice = reMarket.price * sqft / 150;
   console.log( commas(rentPrice) + " /mo" );
 }
+
+function updateJobIncome(currentJobIncome){
+  //return a good deviation for % increase
+  multiple =  Math.abs(chance.normal({mean: 1.02, dev: 0.05}));
+  if (multiple < 1){
+    return currentJobIncome;
+  }
+  else {
+    return currentJobIncome * multiple;
+  }
+}
+
+function updateExpenses(currentExpenses){
+  //return a good deviation for % increase
+  return currentExpenses * Math.abs(chance.normal({mean: 1.2, dev: 0.2}));
+}

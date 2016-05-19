@@ -108,8 +108,14 @@ function Job(name, income){
   this.name = name;
   this.description = "Job: " + name + "  $" + this.income + " /mo";
   this.value = 0;
+  this.tick = 0
   this.update = function(){
+    this.tick += 1
     //change earnings over time?
+    if (this.tick == 12){
+      this.income = updateJobIncome(Number(this.income));
+      this.tick = 0;
+    }
   }
 }
 
