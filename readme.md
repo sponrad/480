@@ -3,7 +3,7 @@
 Description
 -----------
 
-Game where you are given a randomized character in their 20s and must obtain the highest net worth you can in 480 months of play time (approx. 40 years). Random events will be thrown at you and decisions you make will include occupation changes, spending habits, and investments timing and allocation.
+Career simulator, don't let your cash go negative and obtain the highest net worth you can in 480 months of play time (approx. 40 years). Random events will be thrown at you and player decisions will include spending habits (which will affect your happiness and career development), and investments. Features simulated stock market and real estate market.
 
 Setup
 -----
@@ -17,3 +17,5 @@ Uses
 * Rivets.js
 * d3.js / c3.js
 * Bootstrap
+* chance.js
+* Bundled with inliner
