@@ -41,7 +41,7 @@ function Player(){
   this.assets.push( new stockAsset(0) );
   this.assets.push( new Job("Entry Level", 4800) );
   this.assets.push( new Asset("Rent", 0, update=null, income=-800) );
-  this.assets.push( new Asset("Expenses", 0, update=null, income=-3600) );
+  this.assets.push( new Asset("Expenses", 0, update=updateExpenses, income=-3600) );
 
 
   this.update = function(){
@@ -50,7 +50,7 @@ function Player(){
     networth = 0;
 
     for (var i =0; i < this.assets.length; i++) {
-      this.assets[i].update();
+      this.assets[i].update(this.assets[i]);
 
       if (this.assets[i].income >= 0){
         income += this.assets[i].income;
@@ -99,7 +99,6 @@ function Asset(name, value, update=null, income=0){
     }
   }
 
-
 }
 
 function Job(name, income){
@@ -111,10 +110,11 @@ function Job(name, income){
   this.tick = 0
   this.update = function(){
     this.tick += 1
-    //change earnings over time?
+    //TODO: change job title from time to time?
     if (this.tick == 12){
-      this.income = updateJobIncome(Number(this.income));
+      this.income = updateJobIncome(this.income);
       this.tick = 0;
+      this.description = "Job: " + this.name + "  $" + commas(this.income) + " /mo";
     }
   }
 }

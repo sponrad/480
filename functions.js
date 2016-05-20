@@ -214,8 +214,9 @@ function generateRentPrice(){
 
 function updateJobIncome(currentJobIncome){
   //return a good deviation for % increase
-  multiple =  Math.abs(chance.normal({mean: 1.02, dev: 0.05}));
+  multiple =  Math.abs(chance.normal({mean: 1.03, dev: 0.05}));
   if (multiple < 1){
+    //TODO: roll another dice and see if they got fired?
     return currentJobIncome;
   }
   else {
@@ -223,7 +224,11 @@ function updateJobIncome(currentJobIncome){
   }
 }
 
-function updateExpenses(currentExpenses){
+function updateExpenses(expenseAsset){
+  //console.log("running expense update");
+  //currentExpense = expenseAsset.income;
   //return a good deviation for % increase
-  return currentExpenses * Math.abs(chance.normal({mean: 1.2, dev: 0.2}));
+  //return currentExpense * Math.abs(chance.normal({mean: 1.03, dev: 0.05}));
+  expenseAsset.income = expenseAsset.income * Math.abs(chance.normal({mean: 1.0035, dev: 0.004}));
+  expenseAsset.updateDescription();
 }
